@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateResidentUserPermissionsTable extends Migration
+class CreateReportAccessRightsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateResidentUserPermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('resident_user_permissions', function (Blueprint $table) {
+        Schema::create('report_access_rights', function (Blueprint $table) {
             $table->increments('id');
-			$table->unsignedInteger('user_id')->unique();
+			$table->unsignedInteger('user_role_id')->unique();
             $table->boolean('create');
             $table->boolean('read');
 			$table->boolean('update');
 			$table->boolean('delete');
             $table->timestamps();
-			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+			$table->foreign('user_role_id')->references('id')->on('user_roles')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateResidentUserPermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resident_user_permissions');
+        Schema::dropIfExists('report_access_rights');
     }
 }

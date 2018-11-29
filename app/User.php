@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'password', 'is_admin', 'is_active',
+        'username', 'password', 'name', 'phone_number', 'user_role_id', 'user_position_id', 'is_active',
     ];
 
     /**
@@ -23,29 +23,34 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token', 'is_admin',
-    ];
 	
-	public function userPermission() {
-		return $this->hasOne('App\UserPermission');
+	public function userRole() {
+		return $this->belongsTo('App\UserRole');
+	}
+	
+	public function userPosition() {
+		return $this->belongsTo('App\UserPosition');
 	}
 	
 	public function addUser($data) {
 		$var = new self();
-		$var->name = $data->name;
 		$var->username = $data->username;
 		$var->password = $data->password;
-		$var->is_admin = $data->is_admin;
+		$var->name = $data->name;
+		$var->phone_number = $data->phone_number;
+		$var->user_role_id = $data->user_role_id;
+		$var->user_position_id = $data->user_position_id;
 		return $var->save();
 	}
 	
 	
 	public function editUser($data, $id) {
 		$var = self::find($id);
-		$var->username = $data->username;
 		$var->password = $data->password;
-		$var->is_admin = $data->is_admin;
+		$var->name = $data->name;
+		$var->phone_number = $data->phone_number;
+		$var->user_role_id = $data->user_role_id;
+		$var->user_position_id = $data->user_position_id;
 		$var->is_active = $data->is_active;
 		return $var->push();
 	}

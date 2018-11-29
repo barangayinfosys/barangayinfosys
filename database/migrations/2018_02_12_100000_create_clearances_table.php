@@ -15,10 +15,11 @@ class CreateClearancesTable extends Migration
     {
         Schema::create('clearances', function (Blueprint $table) {
             $table->increments('id');
+			$table->integer('reference_number')->unique();
 			$table->unsignedInteger('resident_id');
 			$table->string('barangay_chairman');
             $table->timestamps();
-			$table->foreign('resident_id')->references('id')->on('residents')->onUpdate('cascade')->onDelete('cascade');
+			$table->foreign('resident_id')->references('id')->on('resident_informations')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

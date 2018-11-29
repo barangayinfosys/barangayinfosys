@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCedulasTable extends Migration
+class CreateUserPositionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateCedulasTable extends Migration
      */
     public function up()
     {
-        Schema::create('cedulas', function (Blueprint $table) {
+        Schema::create('user_positions', function (Blueprint $table) {
             $table->increments('id');
-			$table->unsignedInteger('resident_id');
-			$table->integer('cedula_number')->unique();
+			$table->string('name')->unique();
             $table->timestamps();
-			$table->foreign('resident_id')->references('id')->on('resident_informations')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -29,6 +27,6 @@ class CreateCedulasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cedulas');
+        Schema::dropIfExists('user_positions');
     }
 }

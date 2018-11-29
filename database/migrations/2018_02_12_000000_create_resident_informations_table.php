@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateResidentsTable extends Migration
+class CreateResidentInformationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateResidentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('residents', function (Blueprint $table) {
+        Schema::create('resident_informations', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('name')->unique();
             $table->date('birthday');
@@ -23,7 +23,8 @@ class CreateResidentsTable extends Migration
 			$table->string('civil_status');
 			$table->string('nationality');
 			$table->string('occupation');
-			$table->integer('tax_identification_number');
+			$table->integer('phone_number')->nullable();
+			$table->integer('tax_identification_number')->nullable();
 			//$table->string('address');
 			//$table->string('coordinates');
             $table->timestamps();
@@ -37,6 +38,6 @@ class CreateResidentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('residents');
+        Schema::dropIfExists('resident_informations');
     }
 }

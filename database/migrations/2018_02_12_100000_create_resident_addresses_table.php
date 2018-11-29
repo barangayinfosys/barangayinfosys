@@ -23,7 +23,7 @@ class CreateResidentAddressesTable extends Migration
 			$table->integer('postal_code');
 			$table->string('coordinates');
             $table->timestamps();
-			$table->foreign('resident_id')->references('id')->on('residents')->onUpdate('cascade')->onDelete('cascade');
+			$table->foreign('resident_id')->references('id')->on('resident_informations')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

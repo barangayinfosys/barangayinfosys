@@ -17,13 +17,12 @@ class CreateSummonsTable extends Migration
             $table->increments('id');
 			$table->unsignedInteger('resident_id');
 			$table->string('complainant');
-			$table->string('respondent');
-			$table->string('case_number');
+			$table->string('case_number')->unique();
 			$table->string('case_reason');
 			$table->dateTime('date_of_summon');
 			$table->string('barangay_chairman');
             $table->timestamps();
-			$table->foreign('resident_id')->references('id')->on('residents')->onUpdate('cascade')->onDelete('cascade');
+			$table->foreign('resident_id')->references('id')->on('resident_informations')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
