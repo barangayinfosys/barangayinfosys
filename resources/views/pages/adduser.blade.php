@@ -1,100 +1,165 @@
 @extends('layouts.apptheme')
 
 @section('content')
-    <div class="container-fluid">
-            <div class="container py-5">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2 class="text-center mb-5">Add User</h2>
-                            
-                            <div class="row">
-                                <div class="col-md-8 offset-md-2">
-                                    <span class="anchor" id="formRegister"></span>
-                                    <hr class="mb-5">
-                
-                                    <!-- form card register -->
-                                    <div class="card card-outline-secondary">
-                                        <div class="card-header">
-                                            <h3 class="mb-0">Create and Give Access</h3>
-                                        </div>
-                                        <div class="card-body">
-                                            <form class="form" role="form" autocomplete="off">
-                                                <div class="form-group">
-                                                    <label for="name">Name</label>
-                                                    <input type="text" class="form-control" id="inputName" placeholder="Full name">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="username">Username</label>
-                                                    <input type="text" class="form-control" id="username" placeholder="Username" required="">
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-checkbox mb-3">
-                                                        <input type="checkbox" class="custom-control-input" id="makeadmin" name="makeadmin">
-                                                        <label class="custom-control-label" for="makeadmin">Make as Admin</label>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <br>
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-checkbox mb-3">
-                                                        <input type="checkbox" class="custom-control-input" id="cedula" name="cedulaname">
-                                                        <label class="custom-control-label" for="cedula">Cedula Access</label>
-                                                    </div>
-                                                </div>
+<div class="container">
+<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addnewusers">
+        Add New Users
+</button>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Username</th>
+        <th scope="col">Password</th>
+        <th scope="col">User Role</th>
+        <th scope="col">User Permissions</th>
+        <th scope="col">Actions</th>
 
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-checkbox mb-3">
-                                                        <input type="checkbox" class="custom-control-input" id="barangayclearance" name="barangayclearancename">
-                                                        <label class="custom-control-label" for="barangayclearance">Barangay Clearance Access</label>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-checkbox mb-3">
-                                                        <input type="checkbox" class="custom-control-input" id="resident" name="residentname">
-                                                        <label class="custom-control-label" for="resident">Resident Access</label>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-checkbox mb-3">
-                                                        <input type="checkbox" class="custom-control-input" id="summons" name="summonsname">
-                                                        <label class="custom-control-label" for="summons">Summons Access</label>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-checkbox mb-3">
-                                                        <input type="checkbox" class="custom-control-input" id="report" name="reportname">
-                                                        <label class="custom-control-label" for="report">Report Access</label>
-                                                    </div>
-                                                </div>
-                                            </div>       
-                                            <button type="submit" class="btn btn-primary">Submit</button>
 
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <!-- /form card register -->
-                
-                                </div>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Dummy Data</td>
+        <td>Dummy Data</td>
+        <td>Dummy Data</td>
+        <td>Dummy Data</td>
+        <td>Dummy Data</td>
+        <td>
+            <div class="btn-group">
+                <button type="button" class="btn btn-info mr-2" data-toggle="modal" data-target="#edit-modal">
+                    <i class="fa fa-edit fa-fw"></i>
+                </button>
+                <!-- Button trigger modal-->
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalConfirmDelete">
+                    <i class="fa fa-trash fa-fw"></i>
+                </button>
+            </div>
+        </td>
 
-                
-                            </div>
-                            <!--/row-->
-                
-                        <br><br><br><br>
-                
-                        </div>
-                        <!--/col-->
-                    </div>
-                    <!--/row-->
-                    <hr>
-                    <p class="text-center">The End.<br>
-                        <a class="small text-info d-inline-block" href="https://www.codeply.com/bootstrap-4-examples">More Bootstrap 4 Examples</a>
-                    </p>
-                    
-                </div>
-                <!--/container-->
+      </tr>
+    </tbody>
+  </table>
+</div>
+      <!--Modal: modalConfirmDelete-->
+      <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+          <!--Content-->
+          <div class="modal-content text-center">
+            <!--Header-->
+            <div class="modal-header d-flex justify-content-center">
+              <p class="heading">Are you sure?</p>
+              
+            </div>
             
-    </div>
-    <!-- /.container-fluid -->
-    
+      
+            <!--Body-->
+            <div class="modal-body">
+      
+              <i class="fa fa-times fa-4x animated rotateIn"></i>
+      
+            </div>
+      
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+              <a href="" class="btn  btn-outline-danger">Yes</a>
+              <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">No</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+      <!--Modal: modalConfirmDelete-->
+{{-- MODAL FOR ADD --}}
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="addnewusers" tabindex="-1" role="dialog" aria-labelledby="addnewusers" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addnewusers">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                    <form role="form" action="/add_user">
+                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                        <div class="box-body">
+                          <div class="form-group">
+                            <label for="username">Username</label> 
+                            <input type="text" class="form-control" name="username" placeholder="Enter username">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Change Password</label> 
+                            <input type="password" class="form-control" name="change_password" placeholder="Enter password">
+                          </div>
+                          <div class="form-group">
+                            <label for="name">Name</label> 
+                            <input type="text" class="form-control" name="name" placeholder="Enter Name">
+                          </div>
+                          <div class="form-group">
+                            <label for="">Contact</label> 
+                            <input type="text" class="form-control" name="contact" placeholder="Enter phone number">
+                          </div>
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      {{-- MODAL FOR EDIT --}}
+      <div class="modal fade" id="edit-modal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title"><b>Edit User</b></h4>
+                </div>
+                <div class="modal-body">
+                  <form role="form" action="/edit_user">
+                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                    <div class="box-body">
+                      <div class="form-group">
+                        <label for="username">Username</label> 
+                        <input type="text" class="form-control" name="username" placeholder="Enter username">
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Name</label> 
+                        <input type="text" class="form-control" name="name" placeholder="Enter Name">
+                      </div>
+                      <div class="form-group">
+                        <label for="">Contact</label> 
+                        <input type="text" class="form-control" name="contact" placeholder="Enter contact">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Change Password</label> 
+                        <input type="password" class="form-control" name="change_password" placeholder="Enter password">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+</div>
 @endsection

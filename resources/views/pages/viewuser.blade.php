@@ -26,7 +26,7 @@
                 <td>
                   <div class="btn-group">
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit-modal">
-                      <i class="fa fa-edit"></I>
+                      <i class="fa fa-edit"></i>
                     </button>
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#delete-modal">
                       <i class="fa fa-trash"></i>

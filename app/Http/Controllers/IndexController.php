@@ -13,8 +13,7 @@ class IndexController extends Controller
     }
     
     public function adduser(){
-        $view                   = view('pages.adduser');
-        return $view;
+        
 
     }
 

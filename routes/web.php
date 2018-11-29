@@ -17,12 +17,13 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/dashboard', 'IndexController@dashboard');
-Route::get('/adduser', 'IndexController@adduser');
-Route::get('/viewuser', 'IndexController@viewuser');
+
 Route::get('/viewinfo','IndexController@viewinfo');
 Route::get('/informationfield','IndexController@informationfield');
 
 Route::get('/resetuser','IndexController@resetuser');
+
+Route::resource('/users','UserController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

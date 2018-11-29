@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="/theme/vendors/selectFX/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="/theme/vendors/jqvmap/dist/jqvmap.min.css">
 
+    
+
     <link rel="stylesheet" href="/theme/assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
@@ -41,7 +43,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="/dashboard"><img src="/theme/images/splash.png" alt="Logo"></a>
+                <a class="navbar-brand" href="/dashboard"><img src="/theme/images/logobis.png" alt="Logo"></a>
                 
             </div>
 
@@ -54,8 +56,9 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>USER</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-puzzle-piece"></i><a href="/adduser">Add User</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="/viewuser">View User</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('users.create') }}">Add User</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="{{ route('users.index') }}">View User</a></li>
+                            <li><i class="fa fa-user-circle"></i><a href="{{ route('users.index') }}">User Roles</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -191,7 +194,13 @@
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <a href="/login"><button type="button" class="btn btn-primary">Logout</button></a>
+                                <a href="{{ route('logout') }}"  onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                <button type="button" class="btn btn-primary">Logout</button></a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                                 </div>
                             </div>
                             </div>
@@ -229,30 +238,39 @@
     <script>
         
         $(function () {
-        $("#makeadmin").click(function () {
-            var isChecked = $("#makeadmin").is(":checked");
+        $("#is_admin").click(function () {
+            var isChecked = $("#is_admin").is(":checked");
+            
             if (isChecked) {
                 document.getElementById("cedula").disabled = true;
-                document.getElementById("barangayclearance").disabled = true;
-                document.getElementById("resident").disabled = true;
+                document.getElementById("barangay_clearance").disabled = true;
+                document.getElementById("resident_information_profile").disabled = true;
                 document.getElementById("summons").disabled = true;
                 document.getElementById("report").disabled = true;
                 document.getElementById("cedula").checked = false;
-                document.getElementById("barangayclearance").checked = false;
+                document.getElementById("barangay_clearance").checked = false;
                 document.getElementById("resident").checked = false;
                 document.getElementById("summons").checked = false;
                 document.getElementById("report").checked = false;
                 
             }else{
                 document.getElementById("cedula").disabled = false;
-                document.getElementById("barangayclearance").disabled = false;
-                document.getElementById("resident").disabled = false;
+                document.getElementById("barangay_clearance").disabled = false;
+                document.getElementById("resident_information_profile").disabled = false;
                 document.getElementById("summons").disabled = false;
                 document.getElementById("report").disabled = false;
             }
         });
     });
-
+    </script>
+    <script>
+            jQuery(document).ready(function() {
+                jQuery(".standardSelect").chosen({
+                    disable_search_threshold: 10,
+                    no_results_text: "Oops, nothing found!",
+                    width: "100%"
+                });
+            });
     </script>
 
 
