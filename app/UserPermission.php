@@ -24,7 +24,11 @@ class UserPermission extends Model
         'password', 'remember_token', 'is_admin',
     ];
 	
-		public function addUserPermission($data) {
+	public function user() {
+		return $this->belongsTo('App\UserPermission');
+	}
+	
+	public function addUserPermission($data) {
 		$var = new self();
 		$var->user_id = $data->user_id;
 		$var->resident_information_profile = $data->resident_information_profile;

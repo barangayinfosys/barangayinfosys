@@ -27,12 +27,16 @@ class User extends Authenticatable
         'password', 'remember_token', 'is_admin',
     ];
 	
-		public function addUser($data) {
+	public function userPermission() {
+		return $this->hasOne('App\UserPermission');
+	}
+	
+	public function addUser($data) {
 		$var = new self();
 		$var->name = $data->name;
 		$var->username = $data->username;
-        $var->password = $data->password;
-        $var->is_admin = $data->is_admin;
+		$var->password = $data->password;
+		$var->is_admin = $data->is_admin;
 		return $var->save();
 	}
 	
