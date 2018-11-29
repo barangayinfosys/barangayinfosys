@@ -237,6 +237,12 @@
                 document.getElementById("resident").disabled = true;
                 document.getElementById("summons").disabled = true;
                 document.getElementById("report").disabled = true;
+                document.getElementById("cedula").checked = false;
+                document.getElementById("barangayclearance").checked = false;
+                document.getElementById("resident").checked = false;
+                document.getElementById("summons").checked = false;
+                document.getElementById("report").checked = false;
+                
             }else{
                 document.getElementById("cedula").disabled = false;
                 document.getElementById("barangayclearance").disabled = false;

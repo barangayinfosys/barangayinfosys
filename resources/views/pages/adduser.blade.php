@@ -29,7 +29,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox mb-3">
-                                                        <input type="checkbox" class="custom-control-input" id="makeadmin" name="example2">
+                                                        <input type="checkbox" class="custom-control-input" id="makeadmin" name="makeadmin">
                                                         <label class="custom-control-label" for="makeadmin">Make as Admin</label>
                                                     </div>
                                                 </div>
@@ -37,32 +37,32 @@
                                                 <br>
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox mb-3">
-                                                        <input type="checkbox" class="custom-control-input" id="cedula" name="example1">
+                                                        <input type="checkbox" class="custom-control-input" id="cedula" name="cedulaname">
                                                         <label class="custom-control-label" for="cedula">Cedula Access</label>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox mb-3">
-                                                        <input type="checkbox" class="custom-control-input" id="barangayclearance" name="example2">
+                                                        <input type="checkbox" class="custom-control-input" id="barangayclearance" name="barangayclearancename">
                                                         <label class="custom-control-label" for="barangayclearance">Barangay Clearance Access</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox mb-3">
-                                                        <input type="checkbox" class="custom-control-input" id="resident" name="example">
+                                                        <input type="checkbox" class="custom-control-input" id="resident" name="residentname">
                                                         <label class="custom-control-label" for="resident">Resident Access</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox mb-3">
-                                                        <input type="checkbox" class="custom-control-input" id="summons" name="example1">
+                                                        <input type="checkbox" class="custom-control-input" id="summons" name="summonsname">
                                                         <label class="custom-control-label" for="summons">Summons Access</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox mb-3">
-                                                        <input type="checkbox" class="custom-control-input" id="report" name="example1">
+                                                        <input type="checkbox" class="custom-control-input" id="report" name="reportname">
                                                         <label class="custom-control-label" for="report">Report Access</label>
                                                     </div>
                                                 </div>
