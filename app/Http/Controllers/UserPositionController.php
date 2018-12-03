@@ -12,6 +12,12 @@ class UserPositionController extends Controller
 
         $this->middleware('auth');
     }
+	
+	public function index()
+    {
+		$userPositions = UserPosition::all();
+        return view('pages/adduserposition')->with('userPositions', $userPositions);
+    }
 
     /**
      * Show the form for creating a new resource.

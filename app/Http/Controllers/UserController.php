@@ -14,7 +14,15 @@ class UserController extends Controller
 
         $this->middleware('auth');
     }
-
+	
+	public function index()
+	{
+		$users = User::with('userRole', 'userPosition')->get();
+		$userRoles = UserRole::all();
+		$userPositions = UserPosition::all();
+        return view('pages/adduser', compact('users', 'userRoles', 'userPositions'));
+	}
+	
     /**
      * Show the form for creating a new resource.
      *
