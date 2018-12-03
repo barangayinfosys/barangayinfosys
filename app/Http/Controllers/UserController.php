@@ -17,7 +17,10 @@ class UserController extends Controller
 	
 	public function index()
     {
-        //
+        $users = User::with('userRole', 'userPosition')->get();
+		$userRoles = UserRole::all();
+		$userPositions = UserPosition::all();
+        return view('pages/adduser', compact('users', 'userRoles', 'userPositions'));
     }
 
     /**
