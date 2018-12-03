@@ -48,10 +48,11 @@ class UserController extends Controller
 			//placeholders start
             $request->password = bcrypt('roflmao');
 			//placeholders end
-			$result = new User();
-            $result->addUser($request);
-            
-			if ($result) {
+			//$result = new User();
+            //$result->addUser($request);
+			$result = User::create($request->all());
+            return response()->json($result);
+			/**if ($result) {
                 $request->session()->flash('status', 'Successfully added article.');
                 return redirect()->route('users.create');
 			}
@@ -59,7 +60,7 @@ class UserController extends Controller
 			else {	
 				$request->session()->flash('status', 'Failed to add article.');
 				return redirect()->route('users.create');
-            }
+            }**/
 		}
     }
 
