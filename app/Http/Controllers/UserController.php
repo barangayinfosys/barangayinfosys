@@ -48,9 +48,8 @@ class UserController extends Controller
 			//placeholders start
             $request->password = bcrypt('roflmao');
 			//placeholders end
-			//$result = new User();
-            //$result->addUser($request);
-			$result->addUser($request);
+			$result = new User();
+            $result->addUser($request);
             return response()->json($result);
 			/**if ($result) {
                 $request->session()->flash('status', 'Successfully added article.');
