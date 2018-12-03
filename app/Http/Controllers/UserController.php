@@ -51,22 +51,22 @@ class UserController extends Controller
 			//placeholders end
 			$result = new User();
             $result->addUser($request);
+			/*if ($result) {
+				$post = Post::create($request->all());
+				return response()->json([
+					'fail' => false,
+					'redirect_url' => url('users'),
+				]);
+			}*/
 			if ($result) {
-				$response = [
-					'status' => 'success', 'action' => 'redirect', 'redirect_url' => 'pages/adduser',
-					'target' => '#alert', 'message' => 'Password is'+$password,
-				]
-				return response()->json($response);
-			}
-			/**if ($result) {
-                $request->session()->flash('status', 'Successfully added article.');
+                $request->session()->flash('status', 'Successfully added article. Your password is'+$password);
                 return redirect()->route('users.create');
 			}
 			
 			else {	
 				$request->session()->flash('status', 'Failed to add article.');
 				return redirect()->route('users.create');
-            }**/
+            }
 		}
     }
 

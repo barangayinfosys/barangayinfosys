@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\User;
 use App\UserRole;
 use App\UserPosition;
 
-class UserController extends Controller
+class UserRoleController extends Controller
 {
     public function __construct(){
 
@@ -47,13 +46,13 @@ class UserController extends Controller
 		else {
 			//placeholders start
             $request->password = bcrypt('roflmao');
-			$request->user_role_id = 1;
-			$request->user_position_id = 1;
 			//placeholders end
-			$result = new User();
-            $result->addUser($request);
-            
-			if ($result) {
+			//$result = new User();
+            //$result->addUser($request);
+			$result = User::create($request->all());
+			$request->user_id = User::select('id')->where('username', $request->username)->value('id');
+            return response()->json($result);
+			/**if ($result) {
                 $request->session()->flash('status', 'Successfully added article.');
                 return redirect()->route('users.create');
 			}
@@ -61,7 +60,7 @@ class UserController extends Controller
 			else {	
 				$request->session()->flash('status', 'Failed to add article.');
 				return redirect()->route('users.create');
-            }
+            }**/
 		}
     }
 
