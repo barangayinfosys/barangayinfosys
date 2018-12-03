@@ -25,6 +25,18 @@ class UserRole extends Model
 		return $this->hasMany('App\User');
 	}
 	
+	public function usersAccessRight() {
+		return $this->hasOne('App\UserAccessRight');
+	}
+	
+	public function userRolesAccessRight() {
+		return $this->hasOne('App\UserRolesAccessRight');
+	}
+	
+	public function userPositionsAccessRight() {
+		return $this->hasOne('App\UserPositionsAccessRight');
+	}
+	
 	public function residentAccessRight() {
 		return $this->hasOne('App\ResidentAccessRight');
 	}

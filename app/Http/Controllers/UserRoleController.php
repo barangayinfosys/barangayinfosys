@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\UserRole;
-use App\UserPosition;
+use App\UsersAccessRight;
+use App\UserRolesAccessRight;
+use App\UserPositionsAccessRight;
 
 class UserRoleController extends Controller
 {
@@ -21,10 +23,8 @@ class UserRoleController extends Controller
      */
     public function create()
     {
-		$users = User::with('userRole', 'userPosition')->get();
-		$userRoles = UserRole::all();
-		$userPositions = UserPosition::all();
-        return view('pages/adduser', compact('users', 'userRoles', 'userPositions'));
+		$userRoles = UserRole::with('usersAccessRight', 'userRolesAccessRight', 'userPositionsAccessRight')->get();
+        return view('pages/adduserroles')->with('userRoles', $userRoles);
     }
 
     /**
