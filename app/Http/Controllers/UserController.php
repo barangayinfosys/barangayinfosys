@@ -14,6 +14,11 @@ class UserController extends Controller
 
         $this->middleware('auth');
     }
+	
+	public function index()
+    {
+        //
+    }
 
     /**
      * Show the form for creating a new resource.
