@@ -53,7 +53,7 @@ class UserController extends Controller
             $result->addUser($request);
 			if ($result) {
 				$response = [
-					'status' => 'success', 'action' => 'redirect', 'redirect_url' => {{ route('users.create') }},
+					'status' => 'success', 'action' => 'redirect', 'redirect_url' => 'pages/adduser',
 					'target' => '#alert', 'message' => 'Password is'+$password,
 				]
 				return response()->json($response);
