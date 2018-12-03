@@ -46,11 +46,18 @@ class UserController extends Controller
 		
 		else {
 			//placeholders start
-            $request->password = bcrypt('roflmao');
+			$password = 'roflmao';
+            $request->password = bcrypt($password);
 			//placeholders end
 			$result = new User();
             $result->addUser($request);
-            return response()->json($result);
+			if ($result) {
+				$response = [
+					'status' => 'success', 'action' => 'redirect', 'redirect_url' => {{ route('users.create') }},
+					'target' => '#alert', 'message' => 'Password is'+$password,
+				]
+				return response()->json($response);
+			}
 			/**if ($result) {
                 $request->session()->flash('status', 'Successfully added article.');
                 return redirect()->route('users.create');
