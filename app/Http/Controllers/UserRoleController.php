@@ -22,9 +22,10 @@ class UserController extends Controller
      */
     public function create()
     {
+		$users = User::with('userRole', 'userPosition')->get();
 		$userRoles = UserRole::all();
 		$userPositions = UserPosition::all();
-        return view('pages/adduser', compact('userRoles', 'userPositions'));
+        return view('pages/adduser', compact('users', 'userRoles', 'userPositions'));
     }
 
     /**
