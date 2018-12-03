@@ -14,14 +14,6 @@ class UserController extends Controller
 
         $this->middleware('auth');
     }
-	
-	public function index()
-    {
-        $users = User::with('userRole', 'userPosition')->get();
-		$userRoles = UserRole::all();
-		$userPositions = UserPosition::all();
-        return view('pages/adduser', compact('users', 'userRoles', 'userPositions'));
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -55,8 +47,6 @@ class UserController extends Controller
 		else {
 			//placeholders start
             $request->password = bcrypt('roflmao');
-			$request->user_role_id = 1;
-			$request->user_position_id = 1;
 			//placeholders end
 			$result = new User();
             $result->addUser($request);
