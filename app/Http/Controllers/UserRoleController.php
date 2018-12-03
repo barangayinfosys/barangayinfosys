@@ -24,7 +24,7 @@ class UserRoleController extends Controller
     public function create()
     {
 		$userRoles = UserRole::with('usersAccessRight', 'userRolesAccessRight', 'userPositionsAccessRight')->get();
-        return view('pages/adduserroles')->with('userRoles', $userRoles);
+        return view('pages/adduserrole')->with('userRoles', $userRoles);
     }
 
     /**
@@ -36,7 +36,7 @@ class UserRoleController extends Controller
     public function store(Request $request)
     {
 		$validator = Validator::make($request->toArray(), [
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:255', 'unique:user_roles'],
 		]);
 			
 		if ($validator->fails()) {
@@ -44,23 +44,32 @@ class UserRoleController extends Controller
 		}
 		
 		else {
-			//placeholders start
-            $request->password = bcrypt('roflmao');
-			//placeholders end
-			//$result = new User();
-            //$result->addUser($request);
-			$result = User::create($request->all());
-			$request->user_id = User::select('id')->where('username', $request->username)->value('id');
-            return response()->json($result);
-			/**if ($result) {
-                $request->session()->flash('status', 'Successfully added article.');
-                return redirect()->route('users.create');
+			$result = new UserRole();
+            $result->addUserRole($request);
+            /*if ($result) {
+				$result = new UserRole();
+				$result->addUserRole($request);
+				return response()->json([
+					'fail' => false,
+					'redirect_url' => url('users'),
+				]);
+			}*/
+			if ($result) {
+				$request->user_id = User::select('id')->where('username', $request->username)->value('id');
+				$usersAccessRights = new UsersAccessRight();
+				$usersAccessRights->addUsersAccessRight($request);
+				$userRolesAccessRights = new UserRolesAccessRight();
+				$userRolesAccessRights->addUserRolesAccessRight($request);
+				$userPositionsAccessRights = new UserPositionsAccessRight();
+				$userPositionsAccessRights->addUserPositionsAccessRight($request);
+                $request->session()->flash('status', 'Successfully added user role.');
+                return redirect()->route('user_roles.create');
 			}
 			
 			else {	
-				$request->session()->flash('status', 'Failed to add article.');
-				return redirect()->route('users.create');
-            }**/
+				$request->session()->flash('status', 'Failed to add user role.');
+				return redirect()->route('user_roles.create');
+            }
 		}
     }
 

@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\User;
-use App\UserRole;
 use App\UserPosition;
 
-class UserController extends Controller
+class UserPositionController extends Controller
 {
     public function __construct(){
 
@@ -22,10 +20,8 @@ class UserController extends Controller
      */
     public function create()
     {
-		$users = User::with('userRole', 'userPosition')->get();
-		$userRoles = UserRole::all();
 		$userPositions = UserPosition::all();
-        return view('pages/adduser', compact('users', 'userRoles', 'userPositions'));
+        return view('pages/adduserposition')->with('userPositions', $userPositions);
     }
 
     /**
@@ -37,7 +33,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
 		$validator = Validator::make($request->toArray(), [
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:255', 'unique:user_roles'],
 		]);
 			
 		if ($validator->fails()) {
@@ -45,28 +41,24 @@ class UserController extends Controller
 		}
 		
 		else {
-			//placeholders start
-			$password = 'roflmao';
-            $request->password = bcrypt($password);
-			//placeholders end
-			$result = new User();
-            $result->addUser($request);
-			/*if ($result) {
-				$result = new User();
-				$result->addUser($request);
+			$result = new UserPosition();
+            $result->addUserPosition($request);
+            /*if ($result) {
+				$result = new UserPosition();
+				$result->addUserPosition($request);
 				return response()->json([
 					'fail' => false,
 					'redirect_url' => url('users'),
 				]);
 			}*/
 			if ($result) {
-                $request->session()->flash('status', 'Successfully added user. The password is: '.$password);
-                return redirect()->route('users.create');
+                $request->session()->flash('status', 'Successfully added user position.');
+                return redirect()->route('user_positions.create');
 			}
 			
 			else {	
-				$request->session()->flash('status', 'Failed to add user.');
-				return redirect()->route('users.create');
+				$request->session()->flash('status', 'Failed to add user position.');
+				return redirect()->route('user_positions.create');
             }
 		}
     }
