@@ -50,7 +50,7 @@ class UserController extends Controller
 			//placeholders end
 			//$result = new User();
             //$result->addUser($request);
-			$result = User::create($request->all());
+			$result->addUser($request);
             return response()->json($result);
 			/**if ($result) {
                 $request->session()->flash('status', 'Successfully added article.');
