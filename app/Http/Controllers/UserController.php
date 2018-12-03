@@ -59,7 +59,7 @@ class UserController extends Controller
 				]);
 			}*/
 			if ($result) {
-                $request->session()->flash('status', 'Successfully added user. The password is '.$password);
+                $request->session()->flash('status', 'Successfully added user. The password is: '.$password);
                 return redirect()->route('users.create');
 			}
 			
