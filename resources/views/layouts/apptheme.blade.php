@@ -57,8 +57,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>USER</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('users.create') }}">Add User</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="{{ route('users.index') }}">View User</a></li>
-                            <li><i class="fa fa-user-circle"></i><a href="{{ route('users.index') }}">User Roles</a></li>
+                            {{-- <li><i class="fa fa-id-badge"></i><a href="{{ route('users.index') }}">View User</a></li> --}}
+                            <li><i class="fa fa-user-circle"></i><a href="{{ route('users.index') }}">Add User Roles</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -263,7 +263,7 @@
         });
     });
     </script>
-    <script>
+    {{-- <script>
             jQuery(document).ready(function() {
                 jQuery(".standardSelect").chosen({
                     disable_search_threshold: 10,
@@ -271,7 +271,7 @@
                     width: "100%"
                 });
             });
-    </script>
+    </script> --}}
 
 
 </body>

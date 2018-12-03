@@ -16,14 +16,16 @@
 // });
 
 Route::get('/', 'HomeController@index');
-Route::get('/dashboard', 'IndexController@dashboard');
+// Route::get('/dashboard', 'IndexController@dashboard');
 
-Route::get('/viewinfo','IndexController@viewinfo');
-Route::get('/informationfield','IndexController@informationfield');
+// Route::get('/viewinfo','IndexController@viewinfo');
+// Route::get('/informationfield','IndexController@informationfield');
 
-Route::get('/resetuser','IndexController@resetuser');
+// Route::get('/resetuser','IndexController@resetuser');
 
 Route::resource('/users','UserController');
+Route::resource('/users/role','UserRoleController');
+Route::resource('/users/position','UserPositionController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -16,7 +16,7 @@ class UserRoleController extends Controller
         $this->middleware('auth');
     }
 	
-	public function create()
+	public function index()
     {
 		$userRoles = UserRole::with('usersAccessRight', 'userRolesAccessRight', 'userPositionsAccessRight')->get();
         return view('pages/adduserrole')->with('userRoles', $userRoles);
